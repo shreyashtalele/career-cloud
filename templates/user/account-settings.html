@@ -1,0 +1,120 @@
+{% extends "user/company/loggedcompany.html" %}
+{% load widget_tweaks %}
+
+{% block body %}
+<br>
+<div class="container" style="background-color: white;">
+
+        <div class="row align-items-center mb-5">
+            <div class="col-lg-8 mb-4 mb-lg-0">
+                <div class="d-flex align-items-center">
+                    <div>
+                        <h2>Edit Account Settings</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6 mb-5">
+                <form class="p-4 p-md-5 border rounded" method="post" action="">
+                    {% csrf_token %}
+
+                    <h3 class="text-black mb-5 border-bottom pb-2">Edit Account Information</h3>
+
+                    <div class="row form-group">
+                        <div class="col-md-12 mb-3 mb-md-0">
+                            <label class="text-black">Name</label>
+                            {{ information_form.name|add_class:"form-control" }}
+                            {{ information_form.name.errors }}
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-md-12 mb-3 mb-md-0">
+                            <label class="text-black">Email Address</label>
+                            {{ information_form.email|add_class:"form-control" }}
+                            {{ information_form.email.errors }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="col-12">
+                        <button class="btn btn-block btn-info btn-md" type="submit">Update Account Information
+                        </button>
+                    </div>
+                </form>
+
+            {% for message in messages %}
+            <div class="alert alert-success">
+                <a class="close" href="#" data-dismiss="alert">×</a>
+
+                {{ message }}
+
+            </div>
+            {% endfor %}
+            </div>
+
+
+            <div class="col-lg-6 mb-5">
+                <form class="p-4 p-md-5 border rounded" method="post" action="">
+                    {% csrf_token %}
+
+                    <h3 class="text-black mb-5 border-bottom pb-2">Change Password</h3>
+
+                    <div class="row form-group">
+                        <div class="col-md-12 mb-3 mb-md-0">
+                            <label class="text-black">Old Password</label>
+                            {{ password_form.old_password|add_class:"form-control" }}
+                            {{ password_form.old_password.errors }}
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-md-12 mb-3 mb-md-0">
+                            <label class="text-black">New Password</label>
+                            {{ password_form.new_password1|add_class:"form-control" }}
+                            {{ password_form.new_password1.errors }}
+                            <p>Password must contain at least 8 character including numeric values</p>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-md-12 mb-3 mb-md-0">
+                            <label class="text-black">Confirm Password</label>
+                            {{ password_form.new_password2|add_class:"form-control" }}
+                            {{ password_form.new_password2.errors }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="col-12">
+                        <button class="btn btn-block btn-info btn-md" type="submit">Change Password
+                        </button>
+                    </div>
+                </form>
+
+            {% for message in messages %}
+            <div class="alert alert-success">
+                <a class="close" href="#" data-dismiss="alert">×</a>
+
+                {{ message }}
+
+            </div>
+            {% endfor %}
+            </div>
+
+
+            <div class="col-lg-6 mb-5">
+                <form class="p-4 p-md-5 border rounded" method="post" action="{% url 'authentication' %}">
+                    {% csrf_token %}
+
+                    <h3 class="text-black mb-5 border-bottom pb-2">Deactivate Account</h3>
+                    <br>
+                    <div class="col-12">
+                        <button class="btn btn-block btn-outline-danger btn-md" type="submit">Deactivate Account
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

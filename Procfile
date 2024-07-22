@@ -1,0 +1,1 @@
+web: gunicorn carrercloud.wsgi --log-file -

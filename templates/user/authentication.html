@@ -1,0 +1,46 @@
+{% extends "user/base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+
+{% block content %}
+
+<!-- NAVBAR -->
+<section class="site-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mb-5">
+                <h2 class="mb-4">Confirm Password</h2>
+                <form method="POST" action="" class="p-4 border rounded">
+                    {% csrf_token %}
+                    <div class="row form-group mb-4">
+                        <div class="col-md-12 mb-3 mb-md-0">
+                            <label class="text-black">Password</label>
+                            {{ form.password|add_class:"form-control" }}
+                            {{ form.password.errors }}
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <input type="submit" value="Confirm Password" class="btn px-4 btn-info text-white">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            {% for message in messages %}
+            <p id="messages">{{message}}</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% include "./javascript.html" %}
+
+<script>
+    var form_fields = document.getElementsByTagName("input")
+
+    form_fields[1].placeholder = 'Password'
+</script>
+
+{% endblock %}
